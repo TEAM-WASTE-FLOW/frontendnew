@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Leaf } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const CTASection = () => {
   return (
@@ -31,7 +32,7 @@ const CTASection = () => {
                 size="xl" 
                 className="bg-white text-primary hover:bg-white/90 shadow-elevated hover:shadow-soft"
               >
-                Create Free Account
+                <Link to="/signup">Create Free Account</Link>
                 <ArrowRight className="w-5 h-5" />
               </Button>
               <Button 
