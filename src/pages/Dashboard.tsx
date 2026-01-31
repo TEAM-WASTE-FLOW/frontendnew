@@ -485,13 +485,8 @@ const Dashboard = () => {
   }
 
   // If profile is not loaded yet (but not loading auth), show a spinner to prevent flashing Generator view
-  if (!profile) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-background">
-        <div className="animate-pulse text-muted-foreground">Setting up your dashboard...</div>
-      </div>
-    );
-  }
+  // If profile is not loaded, we fall through to the default Waste Generator Dashboard
+  // This prevents infinite loading for legacy accounts that might not have a profile record
 
   // DEFAULT: Waste Generator Dashboard
   // This is now explicitly the fallback only if profile exists and type is not the others
