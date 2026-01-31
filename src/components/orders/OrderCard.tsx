@@ -82,32 +82,32 @@ const OrderCard = ({ order, onUpdate }: OrderCardProps) => {
   const { getOrCreateConversation } = useGetOrCreateConversation();
   const { canReview } = useCanReviewOrder(order.id);
   const { dispute } = useOrderDispute(order.id);
-  
+
   const [showScheduleDialog, setShowScheduleDialog] = useState(false);
   const [showStatusDialog, setShowStatusDialog] = useState(false);
   const [showReviewDialog, setShowReviewDialog] = useState(false);
   const [showDisputeDialog, setShowDisputeDialog] = useState(false);
   const [showDisputeDetails, setShowDisputeDetails] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  
+
   // Schedule pickup form
   const [pickupDate, setPickupDate] = useState("");
   const [pickupTime, setPickupTime] = useState("");
   const [pickupAddress, setPickupAddress] = useState(order.seller_profile?.location || "");
   const [pickupNotes, setPickupNotes] = useState("");
-  
+
   // Status update
   const [newStatus, setNewStatus] = useState<OrderStatus>(order.status);
   const [statusNotes, setStatusNotes] = useState("");
-  
-  const canRaiseDispute = !dispute && 
+
+  const canRaiseDispute = !dispute &&
     !["completed", "cancelled"].includes(order.status) &&
     order.status !== "disputed";
 
   const isBuyer = user?.id === order.buyer_id;
   const isSeller = user?.id === order.seller_id;
   const revieweeId = isBuyer ? order.seller_id : order.buyer_id;
-  const revieweeName = isBuyer 
+  const revieweeName = isBuyer
     ? (order.seller_profile?.full_name || order.seller_profile?.company_name || "Seller")
     : (order.buyer_profile?.full_name || order.buyer_profile?.company_name || "Buyer");
 
@@ -176,7 +176,7 @@ const OrderCard = ({ order, onUpdate }: OrderCardProps) => {
   const canSchedulePickup = order.status === "pending_pickup" && isSeller;
   const canMarkInTransit = order.status === "pickup_scheduled" && (isBuyer || isSeller);
   const canMarkDelivered = order.status === "in_transit" && (isBuyer || isSeller);
-  const canConfirmCompletion = order.status === "delivered" && 
+  const canConfirmCompletion = order.status === "delivered" &&
     ((isBuyer && !order.buyer_confirmed_at) || (isSeller && !order.seller_confirmed_at));
 
   return (
@@ -184,8 +184,8 @@ const OrderCard = ({ order, onUpdate }: OrderCardProps) => {
       <div className="bg-card rounded-2xl shadow-soft border border-border overflow-hidden">
         {/* Listing Info */}
         {order.listing && (
-          <Link 
-            to={`/listing/${order.listing.id}`} 
+          <Link
+            to={`/listing/${order.listing.id}`}
             className="flex items-center gap-4 p-4 bg-muted/30 border-b border-border hover:bg-muted/50 transition-colors"
           >
             <div className="w-14 h-14 rounded-xl bg-muted flex items-center justify-center text-2xl flex-shrink-0">
@@ -223,20 +223,20 @@ const OrderCard = ({ order, onUpdate }: OrderCardProps) => {
               <span className="text-sm text-muted-foreground">Deal Amount</span>
               <span className="font-display text-2xl font-bold text-foreground flex items-center">
                 <DollarSign className="w-5 h-5" />
-                {order.amount.toLocaleString()}
+                {order.amount?.toLocaleString()}
               </span>
             </div>
           </div>
 
           {/* Other Party Info */}
           <div className="flex items-center gap-3 p-3 bg-muted/30 rounded-xl mb-4">
-            <Link 
+            <Link
               to={`/user/${isBuyer ? order.seller_id : order.buyer_id}`}
               className="w-10 h-10 rounded-xl bg-secondary flex items-center justify-center hover:bg-secondary/80 transition-colors"
             >
               <User className="w-5 h-5 text-muted-foreground" />
             </Link>
-            <Link 
+            <Link
               to={`/user/${isBuyer ? order.seller_id : order.buyer_id}`}
               className="flex-1 min-w-0 hover:opacity-80 transition-opacity"
             >

@@ -91,14 +91,14 @@ export const useRecentActivity = (limit = 10) => {
         offersRes.data.forEach((offer) => {
           const isReceived = offer.seller_id === user.id;
           const listingTitle = (offer.listing as any)?.title || "a listing";
-          
+
           activityItems.push({
             id: `offer-${offer.id}`,
             type: isReceived ? "offer_received" : "offer_sent",
             title: isReceived ? "New Offer Received" : "Offer Update",
             description: isReceived
-              ? `You received an offer of $${offer.amount.toLocaleString()} on "${listingTitle}"`
-              : `Your offer of $${offer.amount.toLocaleString()} on "${listingTitle}" is ${offer.status}`,
+              ? `You received an offer of $${offer.amount?.toLocaleString()} on "${listingTitle}"`
+              : `Your offer of $${offer.amount?.toLocaleString()} on "${listingTitle}" is ${offer.status}`,
             timestamp: offer.updated_at || offer.created_at,
             metadata: {
               listingTitle,

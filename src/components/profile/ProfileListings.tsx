@@ -78,19 +78,19 @@ const ProfileListings = ({ listings, loading }: ProfileListingsProps) => {
                   <Package className="h-8 w-8 text-muted-foreground/50" />
                 </div>
               )}
-              
+
               <div className="flex items-start justify-between gap-2 mb-2">
                 <h3 className="font-semibold text-foreground line-clamp-1">
                   {listing.title}
                 </h3>
-                <Badge 
-                  variant="secondary" 
+                <Badge
+                  variant="secondary"
                   className={wasteTypeColors[listing.waste_type] || wasteTypeColors.other}
                 >
                   {listing.waste_type}
                 </Badge>
               </div>
-              
+
               <div className="flex items-center justify-between text-sm text-muted-foreground">
                 <span className="flex items-center gap-1">
                   <MapPin className="h-3 w-3" />
@@ -98,10 +98,10 @@ const ProfileListings = ({ listings, loading }: ProfileListingsProps) => {
                 </span>
                 <span className="flex items-center font-medium text-foreground">
                   <IndianRupee className="h-3 w-3" />
-                  {listing.asking_price.toLocaleString()}
+                  {listing.asking_price?.toLocaleString()}
                 </span>
               </div>
-              
+
               <p className="text-xs text-muted-foreground mt-1">
                 {listing.quantity} {listing.quantity_unit}
               </p>

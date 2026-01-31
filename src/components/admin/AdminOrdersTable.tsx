@@ -106,9 +106,9 @@ const AdminOrdersTable = ({ orders }: AdminOrdersTableProps) => {
               {status === "all"
                 ? "All"
                 : status
-                    .split("_")
-                    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
-                    .join(" ")}
+                  .split("_")
+                  .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+                  .join(" ")}
             </Button>
           ))}
         </div>
@@ -139,7 +139,7 @@ const AdminOrdersTable = ({ orders }: AdminOrdersTableProps) => {
                 <TableCell>{order.buyer_name || "—"}</TableCell>
                 <TableCell>{order.seller_name || "—"}</TableCell>
                 <TableCell className="font-medium">
-                  ${Number(order.amount).toLocaleString()}
+                  ${Number(order.amount)?.toLocaleString()}
                 </TableCell>
                 <TableCell>{getStatusBadge(order.status)}</TableCell>
                 <TableCell>

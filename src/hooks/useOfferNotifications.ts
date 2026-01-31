@@ -48,7 +48,7 @@ export const useOfferNotifications = () => {
         },
         async (payload) => {
           const offer = payload.new as OfferPayload;
-          
+
           // Notify seller of new offer
           if (offer.seller_id === user.id) {
             const { data: listing } = await supabase
@@ -58,7 +58,7 @@ export const useOfferNotifications = () => {
               .single();
 
             toast.success("New Offer Received! 🎉", {
-              description: `You received an offer of $${offer.amount.toLocaleString()} for "${listing?.title || "your listing"}"`,
+              description: `You received an offer of $${offer.amount?.toLocaleString()} for "${listing?.title || "your listing"}"`,
               action: {
                 label: "View",
                 onClick: () => window.location.href = "/my-offers",
@@ -110,7 +110,7 @@ export const useOfferNotifications = () => {
 
           if (offer.status === "countered" && offer.buyer_id === user.id) {
             toast.info("Counter Offer Received! 💬", {
-              description: `The seller countered with $${offer.counter_amount?.toLocaleString()} for "${listingTitle}"`,
+              description: `The seller countered with $${offer.counter_amount ??.toLocaleString()} for "${listingTitle}"`,
               action: {
                 label: "View",
                 onClick: () => window.location.href = "/my-offers",
@@ -144,7 +144,7 @@ export const useOfferNotifications = () => {
         },
         async (payload) => {
           const message = payload.new as MessagePayload;
-          
+
           if (message.sender_id === user.id) return;
 
           const { data: conversation } = await supabase
@@ -165,8 +165,8 @@ export const useOfferNotifications = () => {
           const senderName = sender?.full_name || sender?.company_name || "Someone";
 
           toast.info(`New Message from ${senderName}`, {
-            description: message.content.length > 50 
-              ? `${message.content.substring(0, 50)}...` 
+            description: message.content.length > 50
+              ? `${message.content.substring(0, 50)}...`
               : message.content,
             action: {
               label: "Reply",

@@ -318,7 +318,7 @@ const BrowseListings = () => {
 
                     <div className="flex items-center justify-between mb-4">
                       <span className="font-display text-2xl font-bold text-foreground flex items-center">
-                        ${listing.asking_price.toLocaleString()}
+                        ${listing.asking_price?.toLocaleString()}
                       </span>
                       <span className="flex items-center gap-1 text-sm text-muted-foreground">
                         <MessageSquare className="w-4 h-4" />

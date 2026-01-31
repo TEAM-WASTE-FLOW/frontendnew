@@ -1,9 +1,9 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
-import { 
-  TrendingUp, 
-  ShoppingCart, 
+import {
+  TrendingUp,
+  ShoppingCart,
   Package,
   IndianRupee,
   CheckCircle2
@@ -64,7 +64,7 @@ const ProfileTransactions = ({ transactions, stats, loading }: ProfileTransactio
             </div>
           </CardContent>
         </Card>
-        
+
         <Card className="bg-gradient-to-br from-green-500/5 to-green-500/10">
           <CardContent className="p-4">
             <div className="flex items-center gap-3">
@@ -74,7 +74,7 @@ const ProfileTransactions = ({ transactions, stats, loading }: ProfileTransactio
               <div>
                 <p className="text-2xl font-bold text-foreground flex items-center">
                   <IndianRupee className="h-5 w-5" />
-                  {stats.totalValue.toLocaleString()}
+                  {stats.totalValue?.toLocaleString()}
                 </p>
                 <p className="text-xs text-muted-foreground">
                   Total Value Traded
@@ -103,11 +103,10 @@ const ProfileTransactions = ({ transactions, stats, loading }: ProfileTransactio
               <CardContent className="p-4">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <div className={`p-2 rounded-full ${
-                      transaction.role === "seller" 
-                        ? "bg-green-500/10" 
-                        : "bg-blue-500/10"
-                    }`}>
+                    <div className={`p-2 rounded-full ${transaction.role === "seller"
+                      ? "bg-green-500/10"
+                      : "bg-blue-500/10"
+                      }`}>
                       {transaction.role === "seller" ? (
                         <TrendingUp className="h-4 w-4 text-green-600" />
                       ) : (
@@ -131,12 +130,12 @@ const ProfileTransactions = ({ transactions, stats, loading }: ProfileTransactio
                   <div className="text-right">
                     <p className="font-semibold text-foreground flex items-center justify-end">
                       <IndianRupee className="h-4 w-4" />
-                      {transaction.amount.toLocaleString()}
+                      {transaction.amount?.toLocaleString()}
                     </p>
-                    <Badge 
+                    <Badge
                       variant="secondary"
-                      className={transaction.role === "seller" 
-                        ? "bg-green-500/10 text-green-600" 
+                      className={transaction.role === "seller"
+                        ? "bg-green-500/10 text-green-600"
                         : "bg-blue-500/10 text-blue-600"
                       }
                     >

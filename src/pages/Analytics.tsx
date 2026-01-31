@@ -128,7 +128,7 @@ const Analytics = () => {
                       </div>
                     </div>
                     <p className="font-display text-3xl font-bold text-foreground">
-                      ${data.totalRevenue.toLocaleString()}
+                      ${data.totalRevenue?.toLocaleString()}
                     </p>
                     <p className="text-sm text-muted-foreground">Total Revenue</p>
                   </CardContent>
@@ -198,25 +198,25 @@ const Analytics = () => {
                             </linearGradient>
                           </defs>
                           <CartesianGrid strokeDasharray="3 3" className="stroke-border" />
-                          <XAxis 
-                            dataKey="period" 
-                            tick={{ fontSize: 12 }} 
+                          <XAxis
+                            dataKey="period"
+                            tick={{ fontSize: 12 }}
                             className="text-muted-foreground"
                             tickLine={false}
                           />
-                          <YAxis 
-                            tick={{ fontSize: 12 }} 
+                          <YAxis
+                            tick={{ fontSize: 12 }}
                             className="text-muted-foreground"
                             tickLine={false}
-                            tickFormatter={(value) => `$${value.toLocaleString()}`}
+                            tickFormatter={(value) => `$${value?.toLocaleString()}`}
                           />
-                          <Tooltip 
+                          <Tooltip
                             contentStyle={{
                               backgroundColor: "hsl(var(--card))",
                               border: "1px solid hsl(var(--border))",
                               borderRadius: "8px",
                             }}
-                            formatter={(value: number) => [`$${value.toLocaleString()}`, "Revenue"]}
+                            formatter={(value: number) => [`$${value?.toLocaleString()}`, "Revenue"]}
                           />
                           <Area
                             type="monotone"
@@ -245,18 +245,18 @@ const Analytics = () => {
                       <ResponsiveContainer width="100%" height="100%">
                         <BarChart data={data.revenueByPeriod}>
                           <CartesianGrid strokeDasharray="3 3" className="stroke-border" />
-                          <XAxis 
-                            dataKey="period" 
-                            tick={{ fontSize: 12 }} 
+                          <XAxis
+                            dataKey="period"
+                            tick={{ fontSize: 12 }}
                             className="text-muted-foreground"
                             tickLine={false}
                           />
-                          <YAxis 
-                            tick={{ fontSize: 12 }} 
+                          <YAxis
+                            tick={{ fontSize: 12 }}
                             className="text-muted-foreground"
                             tickLine={false}
                           />
-                          <Tooltip 
+                          <Tooltip
                             contentStyle={{
                               backgroundColor: "hsl(var(--card))",
                               border: "1px solid hsl(var(--border))",
@@ -301,7 +301,7 @@ const Analytics = () => {
                                 <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                               ))}
                             </Pie>
-                            <Tooltip 
+                            <Tooltip
                               contentStyle={{
                                 backgroundColor: "hsl(var(--card))",
                                 border: "1px solid hsl(var(--border))",
@@ -344,7 +344,7 @@ const Analytics = () => {
                                 <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                               ))}
                             </Pie>
-                            <Tooltip 
+                            <Tooltip
                               contentStyle={{
                                 backgroundColor: "hsl(var(--card))",
                                 border: "1px solid hsl(var(--border))",
@@ -373,8 +373,8 @@ const Analytics = () => {
                       {data.topWasteTypes.length > 0 ? (
                         data.topWasteTypes.map((item, index) => (
                           <div key={item.type} className="flex items-center gap-3">
-                            <div 
-                              className="w-3 h-3 rounded-full" 
+                            <div
+                              className="w-3 h-3 rounded-full"
                               style={{ backgroundColor: COLORS[index % COLORS.length] }}
                             />
                             <div className="flex-1">
@@ -383,9 +383,9 @@ const Analytics = () => {
                                 <span className="text-sm text-muted-foreground">{item.count} listings</span>
                               </div>
                               <div className="w-full bg-muted rounded-full h-2 mt-1">
-                                <div 
-                                  className="h-2 rounded-full" 
-                                  style={{ 
+                                <div
+                                  className="h-2 rounded-full"
+                                  style={{
                                     width: `${(item.count / data.topWasteTypes[0].count) * 100}%`,
                                     backgroundColor: COLORS[index % COLORS.length]
                                   }}
@@ -416,14 +416,13 @@ const Analytics = () => {
                   {data.recentActivity.length > 0 ? (
                     <div className="space-y-4">
                       {data.recentActivity.map((activity, index) => (
-                        <div 
-                          key={index} 
+                        <div
+                          key={index}
                           className="flex items-center justify-between p-3 bg-muted/30 rounded-xl"
                         >
                           <div className="flex items-center gap-3">
-                            <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${
-                              activity.type === "order" ? "bg-primary/10" : "bg-accent/10"
-                            }`}>
+                            <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${activity.type === "order" ? "bg-primary/10" : "bg-accent/10"
+                              }`}>
                               {activity.type === "order" ? (
                                 <ShoppingBag className="w-5 h-5 text-primary" />
                               ) : (
@@ -439,7 +438,7 @@ const Analytics = () => {
                           </div>
                           {activity.amount && (
                             <span className="font-display font-bold text-foreground">
-                              ${activity.amount.toLocaleString()}
+                              ${activity.amount?.toLocaleString()}
                             </span>
                           )}
                         </div>

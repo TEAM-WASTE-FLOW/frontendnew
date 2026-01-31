@@ -203,7 +203,7 @@ export const useAcceptCounter = () => {
         buyer_id: offer.buyer_id,
         seller_id: offer.seller_id,
         amount: offer.counter_amount,
-        message: `Accepted counter offer of $${offer.counter_amount?.toLocaleString()}`,
+        message: `Accepted counter offer of $${offer.counter_amount ??.toLocaleString()}`,
         status: "accepted",
         parent_offer_id: offer.id
       })

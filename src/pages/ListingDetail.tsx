@@ -279,7 +279,7 @@ const ListingDetail = () => {
                   <p className="text-sm text-muted-foreground mb-1">Asking Price</p>
                   <p className="font-display text-4xl font-bold text-foreground flex items-center">
                     <DollarSign className="w-8 h-8" />
-                    {listing.asking_price.toLocaleString()}
+                    {listing.asking_price?.toLocaleString()}
                   </p>
                 </div>
 

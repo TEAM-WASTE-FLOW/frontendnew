@@ -98,7 +98,7 @@ const ListingCard = ({ listing }: { listing: typeof listings[0] }) => {
         <div className="flex items-center justify-between mb-3">
           <span className="text-sm text-muted-foreground">Asking Price</span>
           <span className="font-display font-bold text-foreground text-lg">
-            ${listing.askingPrice.toLocaleString()}
+            ${listing.askingPrice?.toLocaleString()}
           </span>
         </div>
 
@@ -107,7 +107,7 @@ const ListingCard = ({ listing }: { listing: typeof listings[0] }) => {
           <div className="flex items-center justify-between">
             <span className="text-sm text-muted-foreground">Your Offer</span>
             <span className="font-display font-bold text-primary text-lg">
-              ${offerAmount.toLocaleString()}
+              ${offerAmount?.toLocaleString()}
             </span>
           </div>
           <div className="flex items-center gap-3">

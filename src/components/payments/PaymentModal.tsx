@@ -72,7 +72,7 @@ const PaymentModal = ({ isOpen, onClose, offer, onSuccess }: PaymentModalProps) 
                         <div className="bg-muted/50 p-4 rounded-lg space-y-2">
                             <div className="flex justify-between text-sm">
                                 <span className="text-muted-foreground">Amount to Pay</span>
-                                <span className="font-bold text-lg">${offer.amount.toLocaleString()}</span>
+                                <span className="font-bold text-lg">${offer.amount?.toLocaleString()}</span>
                             </div>
                             <div className="flex items-center gap-2 text-xs text-muted-foreground">
                                 <Lock className="w-3 h-3" />
@@ -102,7 +102,7 @@ const PaymentModal = ({ isOpen, onClose, offer, onSuccess }: PaymentModalProps) 
                                 Cancel
                             </Button>
                             <Button type="submit" disabled={loading} className="w-full sm:w-auto bg-primary text-primary-foreground hover:bg-primary/90">
-                                Pays ${offer.amount.toLocaleString()}
+                                Pays ${offer.amount?.toLocaleString()}
                             </Button>
                         </DialogFooter>
                     </form>

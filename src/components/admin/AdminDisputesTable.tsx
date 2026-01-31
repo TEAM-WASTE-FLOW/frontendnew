@@ -174,7 +174,7 @@ const AdminDisputesTable = ({
                   </Badge>
                 </TableCell>
                 <TableCell className="font-medium">
-                  ${Number(dispute.order_amount).toLocaleString()}
+                  ${Number(dispute.order_amount)?.toLocaleString()}
                 </TableCell>
                 <TableCell>
                   <Badge className={statusColors[dispute.status]}>

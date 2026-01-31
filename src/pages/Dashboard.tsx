@@ -248,7 +248,7 @@ const MiddlemanDashboard = () => {
                           <div className="flex justify-between text-sm">
                             <span className="text-muted-foreground">AI Suggested:</span>
                             <span className="font-medium text-blue-600 font-mono">
-                              ${Math.floor(listing.price * 0.9).toLocaleString()} - ${listing.price.toLocaleString()}
+                              ${Math.floor(listing.price * 0.9)?.toLocaleString()} - ${listing.price?.toLocaleString()}
                             </span>
                           </div>
                           <div className="pt-2">
@@ -472,6 +472,17 @@ const Dashboard = () => {
     return <MiddlemanDashboard />;
   }
 
+  // If profile is not loaded yet (but not loading auth), show a spinner to prevent flashing Generator view
+  if (!profile) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-background">
+        <div className="animate-pulse text-muted-foreground">Setting up your dashboard...</div>
+      </div>
+    );
+  }
+
+  // DEFAULT: Waste Generator Dashboard
+  // This is now explicitly the fallback only if profile exists and type is not the others
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -513,7 +524,7 @@ const Dashboard = () => {
                   This month
                 </span>
               </div>
-              <p className="font-display text-3xl font-bold text-foreground">${totalRevenue.toLocaleString()}</p>
+              <p className="font-display text-3xl font-bold text-foreground">${totalRevenue?.toLocaleString()}</p>
               <p className="text-sm text-muted-foreground">Total Earnings</p>
             </Link>
 

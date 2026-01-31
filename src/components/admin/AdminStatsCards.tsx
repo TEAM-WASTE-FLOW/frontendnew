@@ -39,7 +39,7 @@ const AdminStatsCards = ({ stats }: AdminStatsCardsProps) => {
     },
     {
       title: "Total Revenue",
-      value: `$${stats.totalRevenue.toLocaleString()}`,
+      value: `$${stats.totalRevenue?.toLocaleString()}`,
       icon: DollarSign,
       color: "text-amber-600",
       bgColor: "bg-amber-100",

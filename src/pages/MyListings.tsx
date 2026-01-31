@@ -18,12 +18,12 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { toast } from "sonner";
-import { 
-  Plus, 
-  Package, 
-  MapPin, 
-  Clock, 
-  Eye, 
+import {
+  Plus,
+  Package,
+  MapPin,
+  Clock,
+  Eye,
   MessageSquare,
   Edit,
   Trash2,
@@ -241,7 +241,7 @@ const MyListings = () => {
                     <div className="flex items-center justify-between mb-4">
                       <span className="font-display text-xl font-bold text-foreground flex items-center">
                         <IndianRupee className="w-4 h-4" />
-                        {listing.asking_price.toLocaleString()}
+                        {listing.asking_price?.toLocaleString()}
                       </span>
                       <div className="flex items-center gap-3 text-sm text-muted-foreground">
                         <span className="flex items-center gap-1">

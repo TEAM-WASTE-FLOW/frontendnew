@@ -179,7 +179,7 @@ const OfferCard = ({ offer, onUpdate }: OfferCardProps) => {
             <div className="flex-1 min-w-0">
               <p className="font-semibold text-foreground line-clamp-1">{offer.listing.title}</p>
               <p className="text-sm text-muted-foreground">
-                Asking: ${offer.listing.asking_price.toLocaleString()}
+                Asking: ${offer.listing.asking_price?.toLocaleString()}
               </p>
             </div>
             <ArrowRight className="w-4 h-4 text-muted-foreground" />
@@ -219,7 +219,7 @@ const OfferCard = ({ offer, onUpdate }: OfferCardProps) => {
               <span className="text-sm text-muted-foreground">Offer Amount</span>
               <span className="font-display text-2xl font-bold text-foreground flex items-center">
                 <DollarSign className="w-5 h-5" />
-                {offer.amount.toLocaleString()}
+                {offer.amount?.toLocaleString()}
               </span>
             </div>
 
@@ -240,7 +240,7 @@ const OfferCard = ({ offer, onUpdate }: OfferCardProps) => {
                 <span className="text-sm font-medium text-accent-foreground">Counter Offer</span>
                 <span className="font-display text-xl font-bold text-accent-foreground flex items-center">
                   <DollarSign className="w-4 h-4" />
-                  {offer.counter_amount.toLocaleString()}
+                  {offer.counter_amount?.toLocaleString()}
                 </span>
               </div>
               {offer.counter_message && (
@@ -406,14 +406,14 @@ const OfferCard = ({ offer, onUpdate }: OfferCardProps) => {
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm text-muted-foreground">Original Offer</span>
                 <span className="font-display font-bold text-muted-foreground line-through">
-                  ${offer.amount.toLocaleString()}
+                  ${offer.amount?.toLocaleString()}
                 </span>
               </div>
 
               <div className="flex items-center justify-between">
                 <span className="text-sm font-medium">Your Counter</span>
                 <span className="font-display font-bold text-primary text-xl">
-                  ${counterAmount.toLocaleString()}
+                  ${counterAmount?.toLocaleString()}
                 </span>
               </div>
 

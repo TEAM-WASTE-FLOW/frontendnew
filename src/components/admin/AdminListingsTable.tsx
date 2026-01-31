@@ -162,7 +162,7 @@ const AdminListingsTable = ({
                   </div>
                 </TableCell>
                 <TableCell>{getWasteTypeBadge(listing.waste_type)}</TableCell>
-                <TableCell>${listing.asking_price.toLocaleString()}</TableCell>
+                <TableCell>${listing.asking_price?.toLocaleString()}</TableCell>
                 <TableCell>{getStatusBadge(listing.status)}</TableCell>
                 <TableCell>
                   <div className="text-xs">

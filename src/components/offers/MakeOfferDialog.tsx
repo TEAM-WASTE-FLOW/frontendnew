@@ -96,17 +96,17 @@ const MakeOfferDialog = ({
             <div className="flex items-center justify-between mb-2">
               <span className="text-sm text-muted-foreground">Asking Price</span>
               <span className="font-display font-bold text-foreground">
-                ${askingPrice.toLocaleString()}
+                ${askingPrice?.toLocaleString()}
               </span>
             </div>
-            
+
             <div className="border-t border-border my-3" />
 
             <div className="space-y-3">
               <div className="flex items-center justify-between">
                 <Label className="text-sm">Your Offer</Label>
                 <span className="font-display font-bold text-primary text-xl">
-                  ${amount.toLocaleString()}
+                  ${amount?.toLocaleString()}
                 </span>
               </div>
 
@@ -137,7 +137,7 @@ const MakeOfferDialog = ({
               </div>
 
               <div className="h-2 bg-secondary rounded-full overflow-hidden">
-                <div 
+                <div
                   className="h-full bg-hero-gradient rounded-full transition-all duration-200"
                   style={{ width: `${Math.min((amount / askingPrice) * 100, 100)}%` }}
                 />
