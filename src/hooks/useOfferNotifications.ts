@@ -110,7 +110,7 @@ export const useOfferNotifications = () => {
 
           if (offer.status === "countered" && offer.buyer_id === user.id) {
             toast.info("Counter Offer Received! 💬", {
-              description: `The seller countered with $${offer.counter_amount ??.toLocaleString()} for "${listingTitle}"`,
+              description: `The seller countered with $${offer.counter_amount?.toLocaleString()} for "${listingTitle}"`,
               action: {
                 label: "View",
                 onClick: () => window.location.href = "/my-offers",
