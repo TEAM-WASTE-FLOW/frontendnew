@@ -72,7 +72,6 @@ const Footer = () => {
             © 2026 WasteFlow. All rights reserved.
           </p>
           <p className="text-primary-foreground/50 text-sm">
-            Made with 💚 for a sustainable future
           </p>
         </div>
       </div>

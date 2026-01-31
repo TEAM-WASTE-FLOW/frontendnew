@@ -7,47 +7,44 @@ import { Badge } from "@/components/ui/badge";
 const TrackingPage = () => {
     const { requestId } = useParams<{ requestId: string }>();
     const { user } = useAuth();
-    const role = user?.role || "generator"; // Default to generator if not logged in (e.g. view only)
+    const role = user?.role || "generator"; // Default to generator if not logged in
+
+    // Mock data - in real app would come from a query using requestId
+    const mockTrackingData = {
+        middlemanName: "Hugo Solano",
+        wasteType: "Plastic & Metal",
+        eta: "8 min",
+        destination: role === "middleman" ? "Recycling Plant A" : "Your Location"
+    };
 
     return (
-        <div className="container mx-auto p-6 max-w-4xl">
-            <Card>
-                <CardHeader className="flex flex-row items-center justify-between">
-                    <div>
-                        <CardTitle className="text-2xl font-display">Live Tracking</CardTitle>
-                        <p className="text-muted-foreground">Request ID: #{requestId}</p>
-                    </div>
+        <div className="container mx-auto p-4 max-w-5xl h-[calc(100vh-80px)] flex flex-col">
+            <div className="mb-4 flex items-center justify-between">
+                <div>
+                    <h1 className="text-2xl font-display font-bold">Live Tracking</h1>
+                    <p className="text-muted-foreground text-sm">Request #{requestId?.slice(0, 8)}...</p>
+                </div>
+                <Badge variant={role === "middleman" ? "default" : "secondary"} className="text-md px-3 py-1 uppercase tracking-wider">
+                    {role} View
+                </Badge>
+            </div>
 
-                    <Badge variant="outline" className="text-lg px-4 py-1">
-                        {role === "middleman" ? "Broadcasting Location" : "Tracking Waste Flow"}
-                    </Badge>
-                </CardHeader>
-                <CardContent>
-                    <div className="rounded-xl overflow-hidden border shadow-sm">
-                        {requestId ? (
-                            <LiveMap requestId={requestId} role={role} />
-                        ) : (
-                            <div className="p-8 text-center text-red-500">Invalid Request ID</div>
-                        )}
+            <div className="flex-1 min-h-[500px] relative rounded-2xl overflow-hidden shadow-2xl border-2 border-border/50">
+                {requestId ? (
+                    <LiveMap
+                        requestId={requestId}
+                        role={role}
+                        // middlemanName={mockTrackingData.middlemanName}
+                        // wasteType={mockTrackingData.wasteType}
+                        // eta={mockTrackingData.eta}
+                        // destination={mockTrackingData.destination}
+                    />
+                ) : (
+                    <div className="w-full h-full flex items-center justify-center bg-muted">
+                        <p className="text-destructive">Invalid Request ID</p>
                     </div>
-
-                    <div className="mt-6 p-4 bg-muted/30 rounded-lg">
-                        <h3 className="font-semibold mb-2">Instructions</h3>
-                        {role === "middleman" ? (
-                            <ul className="list-disc pl-5 text-sm text-muted-foreground">
-                                <li>Click "Start Navigation" to begin broadcasting your location.</li>
-                                <li>Ensure you have granted GPS permissions to the browser.</li>
-                                <li>Do not close this tab while delivering.</li>
-                            </ul>
-                        ) : (
-                            <ul className="list-disc pl-5 text-sm text-muted-foreground">
-                                <li>The map will update automatically when the collector starts moving.</li>
-                                <li>If the marker is not moving, the collector might have paused navigation.</li>
-                            </ul>
-                        )}
-                    </div>
-                </CardContent>
-            </Card>
+                )}
+            </div>
         </div>
     );
 };
