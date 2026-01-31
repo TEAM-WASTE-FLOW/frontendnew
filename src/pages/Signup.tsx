@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -36,6 +36,9 @@ const Signup = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { signUp } = useAuth();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const defaultType = searchParams.get("type") || "generator";
+  const [userType, setUserType] = useState(defaultType);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -150,18 +153,15 @@ const Signup = () => {
                     key={type.id}
                     type="button"
                     onClick={() => setUserType(type.id)}
-                    className={`p-4 rounded-xl border-2 transition-all text-center ${
-                      userType === type.id
-                        ? "border-primary bg-primary/5"
-                        : "border-border hover:border-primary/50"
-                    }`}
+                    className={`p-4 rounded-xl border-2 transition-all text-center ${userType === type.id
+                      ? "border-primary bg-primary/5"
+                      : "border-border hover:border-primary/50"
+                      }`}
                   >
-                    <type.icon className={`w-6 h-6 mx-auto mb-2 ${
-                      userType === type.id ? "text-primary" : "text-muted-foreground"
-                    }`} />
-                    <span className={`block text-sm font-semibold ${
-                      userType === type.id ? "text-primary" : "text-foreground"
-                    }`}>
+                    <type.icon className={`w-6 h-6 mx-auto mb-2 ${userType === type.id ? "text-primary" : "text-muted-foreground"
+                      }`} />
+                    <span className={`block text-sm font-semibold ${userType === type.id ? "text-primary" : "text-foreground"
+                      }`}>
                       {type.label}
                     </span>
                     <span className="block text-xs text-muted-foreground mt-1">

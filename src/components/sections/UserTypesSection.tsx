@@ -1,8 +1,10 @@
 import { Factory, Truck, RefreshCw, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
 const userTypes = [
   {
+    id: "generator",
     icon: Factory,
     title: "Waste Generators",
     description: "Industries, businesses, and households looking to sell or dispose of waste materials responsibly.",
@@ -10,6 +12,7 @@ const userTypes = [
     color: "primary" as const,
   },
   {
+    id: "middleman",
     icon: Truck,
     title: "Middlemen",
     description: "Collectors and transporters who connect generators with recyclers and manage logistics.",
@@ -17,6 +20,7 @@ const userTypes = [
     color: "accent" as const,
   },
   {
+    id: "recycler",
     icon: RefreshCw,
     title: "Recyclers",
     description: "Processing facilities and recycling plants seeking raw materials for sustainable production.",
@@ -48,9 +52,8 @@ const UserTypesSection = () => {
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               {/* Icon */}
-              <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 ${
-                type.color === 'accent' ? 'bg-accent-gradient' : 'bg-hero-gradient'
-              }`}>
+              <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 ${type.color === 'accent' ? 'bg-accent-gradient' : 'bg-hero-gradient'
+                }`}>
                 <type.icon className="w-7 h-7 text-primary-foreground" />
               </div>
 
@@ -73,9 +76,11 @@ const UserTypesSection = () => {
               </ul>
 
               {/* CTA */}
-              <Button variant="outline" className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-all">
-                Join as {type.title.split(' ')[0]}
-                <ArrowRight className="w-4 h-4" />
+              <Button variant="outline" className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-all" asChild>
+                <Link to={`/signup?type=${type.id}`}>
+                  Join as {type.title.split(' ')[0]}
+                  <ArrowRight className="w-4 h-4 ml-2" />
+                </Link>
               </Button>
             </div>
           ))}

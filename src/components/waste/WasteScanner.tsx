@@ -2,6 +2,7 @@ import { useState, useRef, useCallback, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Camera, X, Loader2, RotateCcw, Scan } from "lucide-react";
 import { toast } from "sonner";
+import { api } from "@/services/api";
 
 export interface ClassificationData {
   wasteType: string;
@@ -115,13 +116,13 @@ const WasteScanner = ({ onClassified, onImageCaptured }: WasteScannerProps) => {
       formData.append('image', blob, 'scan.jpg');
 
       // Call Local Backend AI Service
-      const response = await fetch('http://localhost:3000/api/ai/scan', {
+      const response = await api.post('http://localhost:3000/api/ai/scan', {
         method: 'POST',
         body: formData,
       });
 
       if (!response.ok) {
-        throw new Error('AI Service connection failed');
+        throw new Error('AI Service connection failed')
       }
 
       const data = await response.json();
