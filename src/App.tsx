@@ -22,6 +22,7 @@ import Messages from "./pages/Messages";
 import Analytics from "./pages/Analytics";
 import Admin from "./pages/Admin";
 import About from "./pages/About";
+import TrackingPage from "./pages/TrackingPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -52,6 +53,7 @@ const App = () => (
               <Route path="/analytics" element={<Analytics />} />
               <Route path="/admin" element={<Admin />} />
               <Route path="/about" element={<About />} />
+              <Route path="/tracking/:requestId" element={<TrackingPage />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
