@@ -226,11 +226,23 @@ const MiddlemanDashboard = () => {
                   listings.map((listing: any) => (
                     <Card key={listing.id} className="overflow-hidden">
                       <div className="h-40 bg-muted flex items-center justify-center relative">
-                        {listing.images && listing.images[0] ? (
-                          <img src={listing.images[0]} alt={listing.title} className="w-full h-full object-cover" />
-                        ) : (
-                          <Package className="w-12 h-12 text-muted-foreground/50" />
-                        )}
+                        {(() => {
+                          // Demo Image Overrides for Hackathon
+                          const titleLower = listing.title?.toLowerCase() || "";
+                          let displayImage = listing.images && listing.images[0];
+
+                          if (titleLower.includes("industrial") || titleLower.includes("plastic")) {
+                            displayImage = "https://images.unsplash.com/photo-1530587191325-3db32d826c18?q=80&w=2574&auto=format&fit=crop";
+                          } else if (titleLower.includes("bottle")) {
+                            displayImage = "https://images.unsplash.com/photo-1605600659908-0ef719419d41?q=80&w=2487&auto=format&fit=crop";
+                          }
+
+                          return displayImage ? (
+                            <img src={displayImage} alt={listing.title} className="w-full h-full object-cover transition-transform hover:scale-105 duration-500" />
+                          ) : (
+                            <Package className="w-12 h-12 text-muted-foreground/50" />
+                          );
+                        })()}
                         <span className="absolute top-2 right-2 bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full font-medium shadow-sm">Verified</span>
                       </div>
                       <CardHeader>
@@ -248,7 +260,7 @@ const MiddlemanDashboard = () => {
                           <div className="flex justify-between text-sm">
                             <span className="text-muted-foreground">AI Suggested:</span>
                             <span className="font-medium text-blue-600 font-mono">
-                              ${Math.floor(listing.price * 0.9)?.toLocaleString()} - ${listing.price?.toLocaleString()}
+                              ${Math.floor(Number(listing.price || 0) * 0.9)?.toLocaleString()} - ${Number(listing.price || 0)?.toLocaleString()}
                             </span>
                           </div>
                           <div className="pt-2">

@@ -50,7 +50,8 @@ const Signup = () => {
       toast.error(error.message);
     } else {
       toast.success("Account created successfully!");
-      navigate("/dashboard");
+      // Force full reload to ensure profile and user type are freshly fetched
+      window.location.href = "/dashboard";
     }
 
     setIsLoading(false);
