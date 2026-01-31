@@ -116,7 +116,7 @@ const WasteScanner = ({ onClassified, onImageCaptured }: WasteScannerProps) => {
       formData.append('image', blob, 'scan.jpg');
 
       // Call Local Backend AI Service
-      const response = await fetch(url, {
+      const response = await fetch(url + '/ai/scan', {
         method: 'POST',
         body: formData,
       });
